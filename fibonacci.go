@@ -14,5 +14,10 @@ func Fib(number uint) uint {
 		return 1
 	}
 
-	return Fib(number-1) + Fib(number-2)
+	_, cacheExists := cache[number]
+	if !cacheExists {
+		cache[number] = Fib(number-1) + Fib(number-2)
+	}
+
+	return cache[number]
 }
